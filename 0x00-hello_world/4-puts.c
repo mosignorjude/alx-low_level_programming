@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
-  * int main - where program execution starts and ends
+  * main - where program execution starts and ends
+  * return: 0 if succesful
   */
 int main(void)
 {
@@ -8,3 +9,4 @@ int main(void)
 
 	return (0);
 }
+
