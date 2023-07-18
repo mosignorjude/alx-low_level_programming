@@ -2,6 +2,7 @@
 /**
   * _islower- prints alphabet 10 times
   * Return: 1 if lower case otherwise 0
+  * @int c: takes the character parameter
   */
 int _islower(int c)
 {
