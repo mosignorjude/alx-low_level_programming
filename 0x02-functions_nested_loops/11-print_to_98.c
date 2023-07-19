@@ -7,69 +7,35 @@
  */
 void print_to_98(int n)
 {
-	int max;
+	int i, j;
 
-	max = 98;
 
-	if (n == 0)
+	if (n <= 98)
 	{
-		while (n <= max)
+		for (i = n; i <= 98; i++)
 		{
-			if (n == 98)
+			if (i != 98)
 			{
-			printf("%d", n);
+				printf("%d, ", i);
 			}
-			else
+			else if (i == 98)
 			{
-				printf("%d, ", n);
+				printf("%d\n", i);
 			}
-			n++;
 		}
 	}
-	else if (n > 0 && n <= max)
+	else if (n >= 98)
 	{
-		while (n <= max)
+		for (j = n; j >= 98; j--)
 		{
-			if (n == 98)
+			if (j != 98)
 			{
-			printf("%d", n);
+				printf("%d, ", j);
 			}
-			else
+			else if (j == 98)
 			{
-				printf("%d, ", n);
+				printf("%d\n", j);
 			}
-			n++;
 		}
 	}
-	else if (n < 0)
-	{
-		while (n <= max)
-		{
-			if (n == 98)
-			{
-			printf("%d", n);
-			}
-			else
-			{
-				printf("%d, ", n);
-			}
-			n++;
-		}
-	}
-	else if (n > max)
-	{
-		while (n >= max)
-		{
-			if (n == 98)
-			{
-			printf("%d", n);
-			}
-			else
-			{
-				printf("%d, ", n);
-			}
-			n--;
-		}
-	}
-	_putchar('\n');
 }
