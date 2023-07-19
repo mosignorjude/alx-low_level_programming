@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-  * print_sign- print absolute numbers
+  * _abs- print absolute numbers
   * Return: a postive number always
   * @n: takes the character parameter
   */
@@ -9,11 +9,11 @@ int _abs(int n)
 	if (n > 0)
 	{
 
-		return n;
+		return (n);
 	}
 	else
 	{
 		n = n * (-1);
-		return n;
+		return (n);
 	}
 }
