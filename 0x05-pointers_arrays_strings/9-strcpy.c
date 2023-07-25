@@ -5,7 +5,7 @@
  * @src: source variable
  * @dest: destination variable
  * Return: void
-*/
+ */
 char *_strcpy(char *dest, char *src)
 {
 	/*Create a new pointer to hold the destination address*/
