@@ -8,19 +8,14 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	/*Create a new pointer to hold the destination address*/
-	char *dest_ptr = dest;
+	int i;
 
 	/*Copy characters from src to dest*/
-	while (*src != '\0')
+	for (i = 0; src[i] != '\0'; i++)
 	{
-		*dest_ptr = *src;
-		src++;
-		*dest_ptr++;
-
+		dest[i] = src[i];
 	}
 	/*Add the null terminator to the destination string*/
-	*dest_ptr = '\0';
-
+	dest[i++] = '\0';
 	return (dest);
 }
