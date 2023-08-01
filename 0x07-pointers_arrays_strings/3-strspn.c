@@ -10,7 +10,7 @@ unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int length = 0; /*the return type and variable*/
 	int i;
-	
+
 	while (*s != '\0') /*while the value of s is not a null byte*/
 	{
 		for (i = 0; accept[i]; i++)
