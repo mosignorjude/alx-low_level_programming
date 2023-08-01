@@ -9,24 +9,21 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	while (*haystack)
+	for (; *haystack != '\0'; haystack++)
 	{
-		if (*haystack == *needle)
-		{
-			const char *h = haystack;
-			const char *n = needle;
+		char *l = haystack;
+		char *p = needle;
 
-			while (*h == *n && *n != '\0')
-			{
-				h++;
-				n++;
-			}
-			if (*n == '\0')
-			{
-				return ((char *)haystack);
-			}
+		while (*l == *p && *p != '\0')
+		{
+			l++;
+			p++;
 		}
-		haystack++;
+
+		if (*p == '\0')
+			return (haystack);
 	}
-	return (NULL);
+
+	return (0);
 }
+
