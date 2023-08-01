@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stddef.h>
 /**
  * _strchr - locate character in string
  * @s: source string
@@ -8,13 +7,13 @@
  */
 char *_strchr(char *s, char c)
 {
-	while (*s != '\0')
+	int i = 0;
+
+	for (; s[i] >= '\0'; i++)
 	{
-		if (*s == c)
-		{
-			return (s); /*Return a pointer to the first occurrence of c*/
-		}
-		s++; /*Move to the next character in the string*/
+		if (s[i] == c)
+			return (&s[i]);
 	}
-	return (NULL); /*If c is not found, return NULL*/
+	return (0);
 }
+
