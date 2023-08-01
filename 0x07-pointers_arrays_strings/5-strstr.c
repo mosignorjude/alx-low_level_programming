@@ -13,8 +13,8 @@ char *_strstr(char *haystack, char *needle)
 	{
 		if (*haystack == *needle)
 		{
-			const char* h = haystack;
-			const char* n = needle;
+			const char *h = haystack;
+			const char *n = needle;
 
 			while (*h == *n && *n != '\0')
 			{
@@ -23,10 +23,10 @@ char *_strstr(char *haystack, char *needle)
 			}
 			if (*n == '\0')
 			{
-				return (char*)haystack;
+				return ((char *)haystack);
 			}
 		}
 		haystack++;
 	}
-	return NULL;
+	return (NULL);
 }
