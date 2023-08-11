@@ -11,29 +11,41 @@
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+	char *ptr1;
+	char *old_ptr;
 	unsigned int i;
-	void *new_ptr;
 
-	if (ptr == NULL)
+	if (new_size == old_size)
 	{
-		return (malloc(new_size));
+		return (ptr);
 	}
-	if (new_size == 0)
+	if (new_size == 0 && ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	new_ptr = malloc(new_size);
-	if (new_ptr == NULL)
+	if (!ptr)
 	{
-		return (NULL); /*Memory allocation failed*/
+		return (malloc(new_size));
 	}
-	/*Copy data from old block to new block*/
-	for (i = 0; i < old_size && i < new_size; i++)
+	ptr1 = malloc(new_size)
+	if (!ptr1)
 	{
-		((char *)new_ptr)[i] = ((char *)ptr)[i];
+		return (NULL);
+	}
+	old_ptr = ptr;
+	if (new_size < old_size)
+	{
+		for (i = 0; i < new_size; i++)
+		ptr1[i] = old_ptr[i];
+	}
+	if (new_size > old_size)
+	{
+		for (i = 0; i < old_size; i++)
+		{
+			ptr1[i] = old_ptr[i];
+		}
 	}
 	free(ptr);
-	return (new_ptr);
+	return (ptr1);
 }
-
