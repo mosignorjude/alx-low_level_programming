@@ -8,7 +8,7 @@
  * Return: void.
  */
 void array_iterator(int *array, size_t size, void (*action)(int))
-666{
+{
 	unsigned int i;
 
 	if (*action == NULL)
