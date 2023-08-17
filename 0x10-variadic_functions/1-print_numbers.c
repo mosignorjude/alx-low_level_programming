@@ -23,12 +23,8 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		if (num == NULL)
 			return;
 		printf("%d", num);
-		if (i < (n - 1))
+		if (i < (n - 1) && separator != NULL)
 		{
-			if (separator == NULL)
-			{
-				continue;
-			}
 			printf("%s", separator);
 		}
 	}
