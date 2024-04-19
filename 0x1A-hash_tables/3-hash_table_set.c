@@ -15,9 +15,11 @@ void handle_collision(hash_table_t **h, hash_node_t *node,
 	hash_table_t *head;
 
 	head = *h;
+
 	new = malloc(sizeof(hash_node_t));
 	if (new == NULL)
 		return;
+
 	new->key = strdup(node->key);
 	new->value = strdup(node->value);
 	if (new->key == NULL || new->value == NULL)
@@ -48,6 +50,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (k == NULL || ht == NULL)
 		return (0);
 	index = key_index(k, ht->size);
+
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
 		perror("new node malloc failed");
@@ -56,6 +59,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new_node->key = strdup(key);
 	new_node->value = strdup(value);
 	current = ht->array[index];
+
 	while (current != NULL)
 	{
 		if (strcmp(current->key, key) == 0)
@@ -72,5 +76,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[index] = new_node;
 	else
 		handle_collision(&ht, new_node, index);
+
 	return (1);
 }
