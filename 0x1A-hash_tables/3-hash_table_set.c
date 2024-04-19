@@ -52,13 +52,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (new_node == NULL)
 		perror("new node malloc failed");
 
-	(new_node)->next = NULL;
+	new_node->next = NULL;
 	new_node->key = strdup(key);
 	new_node->value = strdup(value);
 	current = ht->array[index];
-	if (current == NULL)
-		current = new_node;
-	else
+	while (current != NULL)
 	{
 		if (strcmp(current->key, key) == 0)
 		{
@@ -68,10 +66,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 				perror("malloc failed");
 			return (1);
 		}
-		else
-		{
-			handle_collision(&ht, new_node, index);
-		}
+		current = current->next;
 	}
+	if (ht->array[index] == NULL)
+		ht->array[index] = new_node;
+	else
+		handle_collision(&ht, new_node, index);
 	return (1);
 }
