@@ -1,4 +1,6 @@
 #include "hash_tables.h"
+#include <stdio.h>
+#include <string.h>
 /**
  * handle_collision - add the new node to the beginning of the list
  * @h: head node pointer
@@ -6,7 +8,7 @@
  * @index: index of the array
  * Return: void.
  */
-void handle_collision(hash_table_t **h, hash_node_t **node,
+void handle_collision(hash_table_t **h, hash_node_t *node,
 		unsigned long int index)
 {
 	hash_node_t *new;
@@ -16,18 +18,16 @@ void handle_collision(hash_table_t **h, hash_node_t **node,
 	new = malloc(sizeof(hash_node_t));
 	if (new == NULL)
 		return;
-
-	new = *node;
-	if (head == NULL)
+	new->key = strdup(node->key);
+	new->value = strdup(node->value);
+	if (new->key == NULL || new->value == NULL)
 	{
-		new->next = NULL;
-		head->array[index] = new;
+		perror("malloc failed");
+		free(new);
+		return;
 	}
-	else
-	{
-		new->next = head->array[index];
-		head->array[index] = new;
-	}
+	new->next = head->array[index];
+	head->array[index] = new;
 }
 /**
  * hash_table_set - function that adds an element to the hash table
@@ -41,34 +41,31 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
 	const unsigned char *k;
-	hash_node_t **new_node;
+	hash_node_t *new_node;
+	hash_node_t *current;
 
 	k = (const unsigned char *)key;
-	if (k == NULL)
+	if (k == NULL || ht == NULL)
 		return (0);
 	index = key_index(k, ht->size);
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
 		perror("new node malloc failed");
 
-	(*new_node)->key = malloc(sizeof(char) * strlen(key) + 1);
-	if ((*new_node)->key == NULL)
-		perror("key malloc failed");
-
-	(*new_node)->value = malloc(sizeof(char) * strlen(value) + 1);
-	if ((*new_node)->value == NULL)
-		perror("value malloc failed");
-
-	(*new_node)->next = NULL;
-	strcpy((*new_node)->key, (char *)k);
-	strcpy((*new_node)->value, value);
-	if (ht->array[index] == NULL)
-		ht->array[index] = *new_node;
+	(new_node)->next = NULL;
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	current = ht->array[index];
+	if (current == NULL)
+		current = new_node;
 	else
 	{
-		if (strcmp(ht->array[index]->key, (char *)k) == 0)
+		if (strcmp(current->key, key) == 0)
 		{
-			strcpy(ht->array[index]->value, value);
+			free(current->value);
+			current->value = strdup(value);
+			if (current->value == NULL)
+				perror("malloc failed");
 			return (1);
 		}
 		else
